@@ -25,7 +25,6 @@ d3.csv("stocks.csv", function(error, data) {
     price = +d.price;
     tValue = +d.tValue;
     vol = +d.vol;
-
   });
   drawVis(data);
   showData(data);

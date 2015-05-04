@@ -3,24 +3,32 @@
 <style>
 
 body {
-  font: 11px sans-serif;
+  font: 10px sans-serif;
 }
 
-.axis line,
-.axis text {
-  font: 11px sans-serif;
-}
-.axis path {
+.axis path,
+.axis line {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
 }
 
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+
 
 </style>
 <body>
 <script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="a3.js"></script>
+<script src="main.js"></script>
 
 
 </body>

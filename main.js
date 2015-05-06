@@ -2,13 +2,7 @@ var margin = {top: 20, right: 80, bottom: 30, left: 50},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-
-
 var color = d3.scale.category10();
-
-
-
-
 
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -64,8 +58,6 @@ d3.csv("names.csv", function(error, data) {
     d3.max(names, function(c) { return d3.max(c.values, function(v) { return v.Count; }); })
   ]);
 
-
-
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
@@ -95,5 +87,5 @@ d3.csv("names.csv", function(error, data) {
       .datum(function(d) { return {name: d.Name, value: d.values[d.values.length - 1]}; })
       .attr("transform", function(d) { return "translate(" + x(d.value.year) + "," + y(d.value.count) + ")"; })
       .attr("dy", ".35em")
-      .text(function(d) { return d.Name; });
+      .text(function(d) { return d.name; });
  });

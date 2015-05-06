@@ -1,4 +1,4 @@
-var margin = {top: 20, right: 80, bottom: 30, left: 50},
+var margin = {top: 30, right: 80, bottom: 30, left: 60},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -35,7 +35,8 @@ d3.csv("names.csv", function(error, data) {
 
   var xAxis = d3.svg.axis()
     .scale(x)
-    .orient("bottom");
+    .orient("bottom")
+    .tickFormat(d3.format("d"));
 
   var yAxis = d3.svg.axis()
     .scale(y)
@@ -83,9 +84,9 @@ d3.csv("names.csv", function(error, data) {
       .attr("d", function(d) { return line(d.values); })
       .style("stroke", function(d) { return color(d.Name); });
 
-  name.append("text")
-      .datum(function(d) { return {name: d.Name, value: d.values[d.values.length - 1]}; })
-      .attr("transform", function(d) { return "translate(" + x(d.value.year) + "," + y(d.value.count) + ")"; })
-      .attr("dy", ".35em")
-      .text(function(d) { return d.name; });
+  // name.append("text")
+  //     .datum(function(d) { return {name: d.Name, value: d.values[d.values.length - 1]}; })
+  //     .attr("transform", function(d) { return "translate(" + x(d.value.year) + "," + y(d.value.count) + ")"; })
+  //     .attr("dy", ".35em")
+  //     .text(function(d) { return d.name; });
  });

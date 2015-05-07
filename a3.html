@@ -52,22 +52,6 @@ d3.csv("names.csv", function(error, data) {
         Ranking = +d.Ranking;
     });
 
-       //checkboxes data
-    var checkbox = svg.append("path")
-        .attr("class", "line")
-        .datum(function(d) { return data })
-        .attr("d", "path");
-
-    //checkboxes select
-    d3.selectAll(".box").on("change", function() {
-        var type = this.type,
-            display = this.checked ? "inline" : "none";
-
-        svg.selectAll(".symbol")
-            .filter(function(d) { return d.properties.type === type; })
-            .attr("display", display);
-    });
-
     //This creates an array per name and sets the value of that arrat to the array of year objects for that name
   data.forEach(function(d) {
 
@@ -101,7 +85,7 @@ d3.csv("names.csv", function(error, data) {
   var line = d3.svg.line()
   .interpolate("basis")
   .x(function(d) { return (x(d.Year) + 60); })
-  .y(function(d) { return y(d.Count); });
+  .y(function(d) { return (y(d.Count) + 30); });
 
   var xAxis = d3.svg.axis()
       .scale(x)
@@ -174,7 +158,7 @@ d3.csv("names.csv", function(error, data) {
       })
     .append("svg:title")
       .text(function(d, i) { 
-        return "name: " + d[0].Name + " year: " + d[0].Year + " gender: " + d[0].Gender; 
+        return "name: " + d[0].Name + " gender: " + d[0].Gender; 
       })
 
   svg.selectAll(".name")
@@ -185,12 +169,15 @@ d3.csv("names.csv", function(error, data) {
   var display;
   d3.selectAll(".filter_button").on("change", function () {
       var selected = this.name; 
-      display = this.checked ? "inline" : "none";
+      display = this.checked ?  "inline" : "none";
       console.log("selected: " + selected);
+      console.log("display: " + display);
       
-      svg.selectAll(".name")
-        .filter(function(d) { return d[0].Gender == selected; })
-        .attr("display", display);
+  var filterName = d3.select("svg")
+      .selectAll(".name")
+      .filter(function(d) { return d[0].Gender == selected; })
+      .attr("display", display)
+      .append("path"); 
   });
  });
 

@@ -184,10 +184,10 @@ d3.csv("names.csv", function(error, data) {
 
   var display;
   d3.selectAll(".filter_button").on("change", function () {
-      var selected = this.value, 
+      var selected = this.name; 
       display = this.checked ? "inline" : "none";
-      alert(selected);
-
+      console.log("selected: " + selected);
+      
       svg.selectAll(".name")
         .filter(function(d) { return d[0].Gender == selected; })
         .attr("display", display);
@@ -200,8 +200,8 @@ d3.csv("names.csv", function(error, data) {
 <div class="box"></div>
 
 <div class="filter_options">
-  <input class="filter_button" id="a_button" type="checkbox">F</input><br>
-  <input class="filter_button" id="b_button" type="checkbox">M</input><br>
+  <input class="filter_button" id="female" name="F" type="checkbox">F</input><br>
+  <input class="filter_button" id="male" name="M" type="checkbox">M</input><br>
 </div>
 
 </body>

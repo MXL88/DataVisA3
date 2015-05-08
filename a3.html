@@ -24,6 +24,7 @@ body {
 </style>
 <body>
 <script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
 <!-- <script src="main.js"></script> -->
 <script type="text/javascript">
 var margin = {top: 30, right: 80, bottom: 30, left: 60},
@@ -179,17 +180,33 @@ d3.csv("names.csv", function(error, data) {
       .attr("display", display)
       .append("path"); 
   });
- });
 
+  var displayText;
+  $("#myVal").keyup(function() {
+    var val = $("#myVal").val();
+    console.log(val);
+    var empty = Boolean(val == "");
+    displayText = empty  ?  "inline" : "none";
+    console.log(displayText);
+    d3.select("svg")
+      .selectAll(".name")
+      .filter(function(d) { return d[0].Name == val; })
+      .attr("display", displayText)
+      .append("path"); 
+    });
 
+  
+});
 </script>
 
 <div class="box"></div>
 
 <div class="filter_options">
-  <input class="filter_button" id="female" name="F" type="checkbox">F</input><br>
-  <input class="filter_button" id="male" name="M" type="checkbox">M</input><br>
+  <input class="filter_button" id="female" name="F" type="checkbox" checked>Female</input><br>
+  <input class="filter_button" id="male" name="M" type="checkbox" checked>Male</input><br>
 </div>
+
+<input type="text" id="myVal" placeholder="Type a name">
 
 </body>
 </html>
